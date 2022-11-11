@@ -24,21 +24,21 @@ def add(request):
 
 
 @ api_view(['GET'])
-def List(request):
+def list(request):
     items = Item.objects.all()
     serializer = ItemSerializer(items, many=True)
     return Response(serializer.data)
 
 
 @ api_view(['GET'])
-def Details(request, pk):
+def details(request, pk):
     item = Item.objects.get(id=pk)
     serializer = ItemSerializer(item, many=False)
     return Response(serializer.data)
 
 
 @ api_view(['POST'])
-def Create(request):
+def create(request):
     serializer = ItemSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
@@ -46,7 +46,7 @@ def Create(request):
 
 
 @ api_view(['POST'])
-def Update(request, pk):
+def update(request, pk):
     item = Item.objects.get(id=pk)
     serializer = ItemSerializer(instance=item, data=request.data)
     if serializer.is_valid():
@@ -55,7 +55,7 @@ def Update(request, pk):
 
 
 @ api_view(['DELETE'])
-def Delete(request, pk):
+def delete(request, pk):
     item = Item.objects.get(id=pk)
     item.delete()
     return Response('Item deleted.')
