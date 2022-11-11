@@ -1,29 +1,26 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.shortcuts import render
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from .models import Item, Image
-from .forms import ItemForm
+from .forms import ItemForm, ImageForm
 
 from .serializers import ItemSerializer
 
 
 def add(request):
     form = ItemForm()
+    image_form = ImageForm
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
-        images = request.FILES.getlist('images')
+        images = request.FILES.getlist('image')
         if form.is_valid():
             item = form.save()
             for image in images:
                 Image.objects.create(item=item, image=image)
-                if len(images) > 1 and str(image) not in item.images:
-                    item.images += ', ' + str(image)
-            form.save()
             # return redirect('/')
-    return render(request, 'add.html', {'form': form})
+    return render(request, 'add.html', {'form': form, 'image_form': image_form})
 
 
 @ api_view(['GET'])
