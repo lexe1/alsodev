@@ -1,6 +1,6 @@
 # IDE specific
 .idea
-.iml
 .vscode
+.iml
 venv
 __pycache__

@@ -23,6 +23,19 @@ def add(request):
     return render(request, 'add.html', {'form': form, 'image_form': image_form})
 
 
+@api_view(['GET'])
+def index(request):
+    api_urls = {
+        'List': '/list/',
+        'Create': '/create/',
+        'Details': '/details/<id>/',
+        'Update': '/update/<id>/',
+        'Delete': '/delete/<id>/',
+        'Add': '/add/',
+    }
+    return Response(api_urls)
+
+
 @ api_view(['GET'])
 def list(request):
     items = Item.objects.all()
