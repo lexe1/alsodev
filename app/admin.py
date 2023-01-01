@@ -5,8 +5,8 @@ from .models import Item, Image
 
 
 class ItemAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'author', 'date', 'id')
-    search_fields = ['name', 'price', 'author', 'date']
+    list_display = ('name', 'price', 'date', 'id')
+    search_fields = ['name', 'price', 'date']
 
 
 class ImageAdmin(admin.ModelAdmin):

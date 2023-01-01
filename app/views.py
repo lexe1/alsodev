@@ -1,11 +1,8 @@
 from django.shortcuts import render
-
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from .models import Item, Image
 from .forms import ItemForm, ImageForm
-
 from .serializers import ItemSerializer
 
 
@@ -23,17 +20,8 @@ def add(request):
     return render(request, 'add.html', {'form': form, 'image_form': image_form})
 
 
-@api_view(['GET'])
 def index(request):
-    api_urls = {
-        'List': '/list/',
-        'Create': '/create/',
-        'Details': '/details/<id>/',
-        'Update': '/update/<id>/',
-        'Delete': '/delete/<id>/',
-        'Add': '/add/',
-    }
-    return Response(api_urls)
+    return render(request, 'index.html')
 
 
 @ api_view(['GET'])

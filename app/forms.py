@@ -5,12 +5,11 @@ from .models import Item, Image
 class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
-        fields = '__all__'
+        fields = ['name', 'price', ]
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control', 'id': 'name'}),
             'price': forms.NumberInput(attrs={'class': 'form-control', 'id': 'price'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'id': 'author'}),
-            'date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'mm-dd-yy', 'id': 'date'}),
+            'date': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'mm-dd-yy', 'id': 'date', 'hidden': True}),
         }
 
 

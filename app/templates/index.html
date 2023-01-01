@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Add Item</title>
+    <title>Index Page</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
@@ -17,45 +17,19 @@
 
   <body>
     <div class="container">
-      <br />
-      <h1>Add Item</h1>
-      <br /><br />
-      <form
-        id="addForm"
-        action="{% url 'add' %}"
-        enctype="multipart/form-data"
-        method="POST"
-      >
-        {% csrf_token %} {{ form.as_p }} {{ image_form }}
-        <br /><br />
-        <button type="submit" id="addButton" class="btn btn-primary">
-          Create
-        </button>
-      </form>
+        <br />
+        <h2>Available Pages</h2>
+        <br />
+        <br />
+        <ul>
+            <li><a href="{% url 'list' %}">.../list/</a> to see a List of all items in json</li>
+            <li><a href="{% url 'create' %}">.../create/</a> to Add a new item in json</li>
+            <li><a href="{% url 'add' %}">.../add/</a> to Add a new item through a form</li>
+            <li>.../details/id/ to see the Details of a particular item in json</li>
+            <li>.../update/id/ to Update an item in json</li>
+            <li>.../delete/id/ to Delete an item</li>
+        </ul>
     </div>
-
-    <script>
-      $("#addForm").submit(function (evt) {
-        let form = $(this)[0];
-        evt.preventDefault();
-        var formData = new FormData(form);
-        $.ajax({
-          url: "{% url 'add' %}",
-          type: "POST",
-          data: formData,
-          async: false,
-          cache: false,
-          contentType: false,
-          enctype: "multipart/form-data",
-          processData: false,
-          success: function (data) {
-            form.reset(),
-              alert("Successfully Added to Database!");
-          },
-        });
-        return false;
-      });
-    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
